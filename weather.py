@@ -1,3 +1,5 @@
+##This code is being made by the EVIH TEAM
+
 from flask import Flask, render_template
 from sense_emu import SenseHat
 

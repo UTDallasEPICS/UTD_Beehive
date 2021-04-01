@@ -9,7 +9,7 @@
     <!-- Code for API comes from https://learn.weatherstem.com/modules/learn/lessons/115/04.html-->
     <!-- Meta data for API key and station identifier -->
 <meta name="WeatherSTEM-api-key" content="7cwa5e4h"> 
-<meta name="WeatherSTEM-station" content="dallas/utdallas"> <!-- Replace "miamidade/rsmas" with your county/station -->
+<meta name="WeatherSTEM-station" content="dallas/utdallas">
 
 <!-- JavaScript -->
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script> <!-- jQuery needs to load before the API file -->
@@ -26,8 +26,7 @@
         <h1>UTD BEE STATION</h1>
 
         <h2>Temperature</h2>
-        <p><strong>Celcius:</strong> {{ celcius }}</p>
-        <p><strong>Fahrenheit:</strong> {{ fahrenheit }}</p>
+        <p>{{ celcius }}°C/{{ fahrenheit }}°F</p>
 
 	<h2>Humidity</h2>
         <p>{{ humidity }}</p>

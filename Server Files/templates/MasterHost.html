@@ -4,8 +4,25 @@
     <head>
         <title>UTD BEE STATION</title>
     </head>
-
    <body>
+   
+    <!-- Code for API comes from https://learn.weatherstem.com/modules/learn/lessons/115/04.html-->
+    <!-- Meta data for API key and station identifier -->
+<meta name="WeatherSTEM-api-key" content="7cwa5e4h"> 
+<meta name="WeatherSTEM-station" content="dallas/utdallas"> <!-- Replace "miamidade/rsmas" with your county/station -->
+
+<!-- JavaScript -->
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script> <!-- jQuery needs to load before the API file -->
+<script src="//static.weatherstem.com/api.min.js"></script> <!-- API file (must load after jQuery) -->
+
+<!-- HTML snippet (data-sensor attribute can be the name of any installed sensor) -->
+<div>
+  <div> Live Weather Conditions via <a href="https://dallas.weatherstem.com/utdallas">UTDallas WeatherSTEM</a>: </div>
+  <div> Current Temperature: <span data-sensor="Thermometer"></span> °F </div>
+  <div> Current Humidity: <span data-sensor="Hygrometer"></span>% </div>
+  <div> Current Rainfall: <span data-sensor="Rain Rate"></span> in/hr </div>
+</div>
+
         <h1>UTD BEE STATION</h1>
 
         <h2>Temperature</h2>

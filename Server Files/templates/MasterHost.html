@@ -5,8 +5,20 @@
         <title>UTD BEE STATION</title>
     </head>
    <body>
-   
-    <!-- Code for API comes from https://learn.weatherstem.com/modules/learn/lessons/115/04.html-->
+  
+        <h1>
+           <img src="https://utdepics.edusourcedapp.com/whitelabels/logos/utdepics.png" alt="UTD logo" style="float:left;width:100;height:75px;">
+           UTDallas Beehive Monitoring
+	</h1>
+        <br>
+        <hr>
+        <a href="https://sustainability.utdallas.edu/">UTD Sustainability</a>
+        <a href="https://epics.utdallas.edu/">UTDesign EPICS</a>
+        <a href="https://sites.utdallas.edu/epics-sustainability/">EPICS Team</a>
+        <br>
+        <br>
+
+<!-- Code for API comes from https://learn.weatherstem.com/modules/learn/lessons/115/04.html-->
     <!-- Meta data for API key and station identifier -->
 <meta name="WeatherSTEM-api-key" content="7cwa5e4h"> 
 <meta name="WeatherSTEM-station" content="dallas/utdallas">
@@ -16,23 +28,22 @@
 <script src="//static.weatherstem.com/api.min.js"></script> <!-- API file (must load after jQuery) -->
 
 <!-- HTML snippet (data-sensor attribute can be the name of any installed sensor) -->
-<div>
-  <div> Live Weather Conditions via <a href="https://dallas.weatherstem.com/utdallas">UTDallas WeatherSTEM</a>: </div>
-  <div> Current Temperature: <span data-sensor="Thermometer"></span> °F </div>
-  <div> Current Humidity: <span data-sensor="Hygrometer"></span>% </div>
-  <div> Current Rainfall: <span data-sensor="Rain Rate"></span> in/hr </div>
+<div style="text-align:right;">
+  <div> <b>Live Weather Conditions</b>
+  <div> Temperature: <span data-sensor="Thermometer"></span> °F </div>
+  <div> Humidity: <span data-sensor="Hygrometer"></span>% </div>
+  <div> Rainfall: <span data-sensor="Rain Rate"></span> in/hr </div>
+  <div><a href="https://dallas.weatherstem.com/utdallas">UTDallas WeatherSTEM</a>: </div>
 </div>
 
-        <h1>UTD BEE STATION</h1>
+     <h2 style="text-align:center;">Temperature</h2>
+        <p style="text-align:center;">{{ celcius }}°C/{{ fahrenheit }}°F</p>
 
-        <h2>Temperature</h2>
-        <p>{{ celcius }}°C/{{ fahrenheit }}°F</p>
+	 <h2 style="text-align:center;">Humidity</h2>
+        <p style="text-align:center;">{{ humidity }}</p>
 
-	<h2>Humidity</h2>
-        <p>{{ humidity }}</p>
-
-	 <h2>Pressure</h2>
-        <p>{{ pressure }}</p>
+	 <h2 style="text-align:center;">Pressure</h2>
+        <p style="text-align:center;">{{ pressure }}</p>
 
     </body>
 </html>

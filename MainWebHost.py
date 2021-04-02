@@ -5,6 +5,12 @@ app = Flask(__name__)
 
 @app.route('/')
 
+
+def readlatestdata(beehiveNumber):
+
+def getdataforgraph(beehiveNumber, datapoints):
+
+
 def index():
     sense = SenseHat()
 
@@ -13,7 +19,7 @@ def index():
     humidity = round(sense.get_humidity(), 1)
     pressure = round(sense.get_pressure(), 1)
 
-    return render_template('MasterHost.html', celcius=celcius, fahrenheit=fahrenheit, humidity=humidity, pressure=pressure)
+    return render_template('UTDBeeSite.html', celcius=celcius, fahrenheit=fahrenheit, humidity=humidity, pressure=pressure)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

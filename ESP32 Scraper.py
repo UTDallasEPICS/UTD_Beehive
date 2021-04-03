@@ -49,7 +49,7 @@ while bool("True"):
     for line in HiveIPList:
         IpAddress = line.strip()
         IpAddress = "http://" + IpAddress
-        time.sleep(10)  ## Set delay till next scrape of MCU
+        time.sleep(1)  ## Set delay till next scrape of MCU
         try:
             scrape(IpAddress)
         except:

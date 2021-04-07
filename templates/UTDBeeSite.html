@@ -7,7 +7,16 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" rel="stylesheet">
 </head>
 <body>
-<h1>UTD Beehive Monitor</h1>
+	<h1>
+        <img src="https://utdepics.edusourcedapp.com/whitelabels/logos/utdepics.png" alt="UTD logo" style="float:left;width:100;height:75px;">
+        UTDallas Beehive Monitoring
+	</h1>
+        <hr>
+        <a href="https://sustainability.utdallas.edu/">UTD Sustainability</a> | 
+        <a href="https://epics.utdallas.edu/">UTDesign EPICS</a> | 
+        <a href="https://sites.utdallas.edu/epics-sustainability/">EPICS Team</a>
+        <br>
+        <br>
 	
 	<!-- Code for API comes from https://learn.weatherstem.com/modules/learn/lessons/115/04.html-->
 	<!-- Meta data for API key and station identifier -->
@@ -27,7 +36,7 @@
   	<div><a href="https://dallas.weatherstem.com/utdallas">UTDallas WeatherSTEM</a> </div>
 	</div>
 
-        <h2 style="text-align:center;">Temperature</h2>
+     <h2 style="text-align:center;">Temperature</h2>
         <p style="text-align:center;">{{ celcius }}°C/{{ fahrenheit }}°F</p>
 
 	 <h2 style="text-align:center;">Humidity</h2>
@@ -35,6 +44,7 @@
 
 	 <h2 style="text-align:center;">Pressure</h2>
         <p style="text-align:center;">{{ pressure }}</p>
+        
 <div class="container">
     <div class="row">
         <div class="col-12">
@@ -117,5 +127,25 @@
         }
     });
 </script>
+	
+
+    <script type="text/javascript">
+        var myDate = new Date();
+        // get hour value.
+        var hours = myDate.getHours();
+        var ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+        var minutes = myDate.getMinutes();
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        var myTime = hours + ":" + minutes + ampm;
+    </script>
+    <br>
+    <h6 style="text-align:center;"> Last Updated at  
+    <script type="text/javascript">
+        document.write(myTime);
+    </script>
+    </h6>
+    <p style="text-align:center;"> Refresh for new data </p>
 </body>
 </html>

@@ -24,15 +24,15 @@ def addvalues(sensordata, linesread):  # Function that adds sensor values togeth
     sum = 0
     for w in sensordata:
         sum = float(w) + sum
-    sum = sum / linesread  # Does total sensor value devivide by how many data points
+    sum = sum / linesread  # Does total sensor value divide by how many data points
     return sum
 
 
 def compressdata(filenameforbeehive, beehivename):  # Compressed the data if a new day is detected
-    linesread = 1  # Used to find the total and devide by is to get the average
+    linesread = 1  # Used to find the total and divide by is to get the average
     beehive = open(filenameforbeehive, "r")  # Open beehive file
     firstline = beehive.readline().split()  # Read the first line of that file and split it into strings and put into list
-    temperaturenode1 = [firstline[2]]  # Now it grabs each value and stores them in seperate lists
+    temperaturenode1 = [firstline[2]]  # Now it grabs each value and stores them in separate lists
     temperaturenode2 = [firstline[3]]
     temperaturenode3 = [firstline[4]]
     temperaturenode4 = [firstline[5]]
@@ -77,12 +77,12 @@ def compressdata(filenameforbeehive, beehivename):  # Compressed the data if a n
         w1 = truncate(addvalues(weight, linesread), 2)
         datadump = firstline[0] + " " + str(t2) + " " + str(t3) + " " + str(t4) + " " + str(t5) + " " + str(
             h1) + " " + str(h2) + " " + str(h3) + " " + str(h4) + " " + str(h5) + " " + str(
-            w1)  # Information that will be dumped into hivename compressed.tx file
+            w1)  # Information that will be dumped into hive name compressed.tx file
         beehivename = beehivename + " Compressed.txt"  # This is now the new file for the compressed data
         beehivecompressed = open(beehivename, "a")  # append to the end of file
         beehivecompressed.write(datadump + "\n")  # dump data
         beehivecompressed.close()  # Close compressed file
-        os.remove(filenameforbeehive)  # Delete the normal beehive file to bascily delete the log
+        os.remove(filenameforbeehive)  # Delete the normal beehive file to basically delete the log
         ##Add code here to make it so it saves the recent data
         print("Compressed Data!")
 
@@ -164,15 +164,15 @@ def scrape(ipaddress):  # Takes in the IP address of the Beehive that it needs t
     savetofile(beehivename, temperature, humidity, weight)  # Function that sends information to be saved
 
 
-while bool("True"):  # Will run forver
+while bool("True"):  # Will run forever
     HiveIPList = open("Beehive_IP.txt", "r")  # open Beehive Ip list. This holds all IP's that the beehives are on.
     for line in HiveIPList:  # For statment reads each line of the beehive ip file
         IpAddress = line.strip()  # Grabs the line
         IpAddress = "http://" + IpAddress  # Turns it into a URL
 
-        try:  # Try statment incase the IP is unresponsive
+        try:  # Try statement in case the IP is unresponsive
             scrape(IpAddress)  # Function that beings the scraping process
-            # time.sleep(2)  # Set delay for the next IP it scrapes. Only change if it is collecting data to fast or want to make it run slower to save battery life if they are solar powered
+            time.sleep(5)  # Set delay for the next IP it scrapes. Only change if it is collecting data to fast or want to make it run slower to save battery life if they are solar powered
         except:
             print("The IP " + IpAddress + " is unresponsive!")  # If ip fails tell user.
             IpAddress = line.strip()  # Gets next line in ip list

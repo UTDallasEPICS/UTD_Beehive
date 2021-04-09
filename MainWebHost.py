@@ -21,6 +21,7 @@ def LastNlines(fname, N):
         # last n lines and print it
         for line in (file.readlines()[-N:]):
             x = line.split()
+
             return x
 
 

@@ -76,7 +76,7 @@ def compressdata(filenameforbeehive, beehivename):  # Compressed the data if a n
         h4 = truncate(addvalues(humiditynode4, linesread), 2)
         h5 = truncate(addvalues(humiditynode5, linesread), 2)
         w1 = truncate(addvalues(weight, linesread), 2)
-        datadump = firstline[0] + " " + str(t2) + " " + str(t3) + " " + str(t4) + " " + str(t5) + " " + str(
+        datadump = firstline[0] + " " + str(t1) + " " + str(t2) + " " + str(t3) + " " + str(t4) + " " + str(t5) + " " + str(
             h1) + " " + str(h2) + " " + str(h3) + " " + str(h4) + " " + str(h5) + " " + str(
             w1)  # Information that will be dumped into hive name compressed.tx file
         beehivename = beehivename + " Compressed.txt"  # This is now the new file for the compressed data
@@ -146,22 +146,23 @@ def scrape(ipaddress):  # Takes in the IP address of the Beehive that it needs t
         "<h1>")  # Filter to grab the Beehive Name. This gets used to set the file name of the hive
     end_index = html.find("</h1>")
     beehivename = html[start_index:end_index]
-    print(beehivename)
+    name = "Working on " + beehivename
+    print(name)
 
     start_index = html.find("Temperature: ") + len("Temperature: ")  # Filter to grab the Temperature Nodes
-    end_index = html.find("&deg;C")
+    end_index = html.find("&deg;F")
     temperature = html[start_index:end_index]
-    print(temperature)
+
 
     start_index = html.find("Humidity: ") + len("Humidity: ")  # Filter to grab the Humidity Nodes
     end_index = html.find("%")
     humidity = html[start_index:end_index]
-    print(humidity)
+
 
     start_index = html.find("Weight: ") + len("Weight: ")  # Filter to Grab the Weight of the hive
-    end_index = html.find("kg")
+    end_index = html.find("lb")
     weight = html[start_index:end_index]
-    print(weight)
+
     savetofile(beehivename, temperature, humidity, weight)  # Function that sends information to be saved
 
 

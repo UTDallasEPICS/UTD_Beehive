@@ -1,13 +1,11 @@
 
 import json
-import random
 import time
-from datetime import datetime
 
 from flask import Flask, Response, render_template
 
 application = Flask(__name__)
-random.seed()  # Initialize the random number generator
+
 def addDate(YMD, time):
     fullDate = YMD + " " + time
     return fullDate
@@ -25,36 +23,59 @@ def LastNlines(fname, N):
             return x
 
 
-@application.route('/')
+@application.route('/') # This displays the main parts of the website
 def index():
-    fname = 'UTD BeeHive 0.txt'
+    fname = 'UTD Beehive 0.txt'
     list = LastNlines(fname, 1)
+    print(list)
     date = addDate(list[0], list[1])
-    celcius = float(list[2])
-    fahrenheit = celcius * (9 / 5) + 32
-    humidity = list[3]
-    pressure = list[4]
-    return render_template('UTDBeeSite.html', celcius=celcius, fahrenheit=fahrenheit, humidity=humidity, pressure=pressure)
+    print(date)
+    fahrenheit = float(list[2])
+    humidity = list[6]
+    weight = list[12]
+    return render_template('UTDBeeSite.html', fahrenheit=fahrenheit, humidity=humidity, weight=weight)
 
 
 @application.route('/chart-data')
 def chart_data():
     def bee_hive_data():
         while True:
-            fname = 'UTD BeeHive 0.txt'
+            fname = 'UTD Beehive 0.txt'
             list = LastNlines(fname, 1)
             date = addDate(list[0], list[1])
-            celcius = float(list[2])
-            fahrenheit = celcius * (9/5) +32
-            humidity = list[3]
-            pressure = list[4]
+            fahrenheit = float(list[2])
+            fahrenheit1 = float(list[3])
             json_data = json.dumps(
-                {'time': date, 'value': celcius})
+                {'time': date, 'value': fahrenheit})
+            json_data1 = json.dumps(
+                {'time': date, 'value': fahrenheit1})
+
             yield f"data:{json_data}\n\n"
-            time.sleep(1)
+            yield f"data1:{json_data1}\n\n"
+            time.sleep(5)
 
     return Response(bee_hive_data(), mimetype='text/event-stream')
 
+@application.route(('/<UTDBeehive>'))
+def UTDBeehive(UTDBeehive):
+    fname = UTDBeehive + ".txt"
+    list = LastNlines(fname, 1)
+    print(list)
+    date = addDate(list[0], list[1])
+    print(date)
+    fahrenheit = float(list[2])
+    humidity = list[6]
+    weight = list[12]
+    return render_template('UTDBeeSite.html', fahrenheit=fahrenheit, humidity=humidity, weight=weight)
+
+
+
+
+
+
+
+
+
 
 if __name__ == '__main__':
-    application.run(debug=True, threaded=True)
+    application.run(host="0.0.0.0")

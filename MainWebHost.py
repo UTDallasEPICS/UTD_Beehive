@@ -3,9 +3,9 @@ import json
 import time
 
 from flask import Flask, Response, render_template
-
+fname = " "
 application = Flask(__name__)
-
+#Check how many beehives there are
 def addDate(YMD, time):
     fullDate = YMD + " " + time
     return fullDate
@@ -36,27 +36,7 @@ def index():
     return render_template('UTDBeeSite.html', fahrenheit=fahrenheit, humidity=humidity, weight=weight)
 
 
-@application.route('/chart-data')
-def chart_data():
-    def bee_hive_data():
-        while True:
-            fname = 'UTD Beehive 0.txt'
-            list = LastNlines(fname, 1)
-            date = addDate(list[0], list[1])
-            fahrenheit = float(list[2])
-            fahrenheit1 = float(list[3])
-            json_data = json.dumps(
-                {'time': date, 'value': fahrenheit})
-            json_data1 = json.dumps(
-                {'time': date, 'value': fahrenheit1})
-
-            yield f"data:{json_data}\n\n"
-            yield f"data1:{json_data1}\n\n"
-            time.sleep(5)
-
-    return Response(bee_hive_data(), mimetype='text/event-stream')
-
-@application.route(('/<UTDBeehive>'))
+@application.route('/<UTDBeehive>')
 def UTDBeehive(UTDBeehive):
     fname = UTDBeehive + ".txt"
     list = LastNlines(fname, 1)
@@ -66,11 +46,7 @@ def UTDBeehive(UTDBeehive):
     fahrenheit = float(list[2])
     humidity = list[6]
     weight = list[12]
-    return render_template('UTDBeeSite.html', fahrenheit=fahrenheit, humidity=humidity, weight=weight)
-
-
-
-
+    return render_template('UTDHiveSite.html', fahrenheit=fahrenheit, humidity=humidity, weight=weight)
 
 
 

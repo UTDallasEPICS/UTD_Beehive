@@ -2,7 +2,22 @@
 #include <WiFi.h> //WiFi.h library provides ESP32 specific WiFi methods we are calling to connect to network.
 #include <WebServer.h> //WebServer.h library has some methods available that will help us setting up a server and handle incoming HTTP requests without needing to worry about low level implementation details.
 #include <Wire.h> //Wire.h library communicates with any I2C device not just BME280
+#include "DHT.h"
 
+#define DHT1_PIN 0
+#define DHT2_PIN 2
+#define DHT3_PIN 4
+#define DHT4_PIN 12
+#define DHT5_PIN 14
+// Uncomment whatever type you're using!
+#define DHTTYPE DHT11   // DHT 11
+//#define DHTTYPE DHT22   // DHT 22  (AM2302), AM2321
+
+DHT dht1(DHT1_PIN, DHTTYPE); // Initialize DHT sensor.
+DHT dht2(DHT2_PIN, DHTTYPE); // Initialize DHT sensor.
+DHT dht3(DHT3_PIN, DHTTYPE); // Initialize DHT sensor.
+DHT dht4(DHT4_PIN, DHTTYPE); // Initialize DHT sensor.
+DHT dht5(DHT5_PIN, DHTTYPE); // Initialize DHT sensor.
 
 #define SEALEVELPRESSURE_HPA (1013.25)
 float temperaturenode1, temperaturenode2, temperaturenode3, temperaturenode4, temperaturenode5, humiditynode1, humiditynode2, humiditynode3, humiditynode4, humiditynode5, weight;
@@ -25,8 +40,18 @@ void setup() {
   Serial.begin(115200); //initialize serial communication is here for testing purpose
   delay(1000); //Initialize sensors
 
+  pinMode(DHT1_PIN, INPUT);
+  pinMode(DHT2_PIN, INPUT);
+  pinMode(DHT3_PIN, INPUT);
+  pinMode(DHT4_PIN, INPUT);
+  pinMode(DHT5_PIN, INPUT);
+  dht1.begin();
+  dht2.begin();
+  dht3.begin();
+  dht4.begin();
+  dht5.begin();
 
-
+  
   Serial.println("Connecting to "); //serial communication is here for testing
   Serial.println(ssid);  //serial communication is here for testing
 
@@ -54,17 +79,18 @@ void loop() {
 }
 
 void handle_OnConnect() {
-  temperaturenode1 = (rand() % (40 - 20 + 1) + 20) * 1.8 + 32;
-  temperaturenode2 = (rand() % (40 - 20 + 1) + 20) * 1.8 + 32;
-  temperaturenode3 = (rand() % (40 - 20 + 1) + 20) * 1.8 + 32;
-  temperaturenode4 = (rand() % (40 - 20 + 1) + 20) * 1.8 + 32;
-  temperaturenode5 = (rand() % (40 - 20 + 1) + 20) * 1.8 + 32;
-  humiditynode1 = rand() % rand() % (60 - 40 + 1) + 40;
-  humiditynode2 = rand() % rand() % (60 - 40 + 1) + 40;
-  humiditynode3 = rand() % rand() % (60 - 40 + 1) + 40;
-  humiditynode4 = rand() % rand() % (60 - 40 + 1) + 40;
-  humiditynode5 = rand() % rand() % (60 - 40 + 1) + 40;
-  weight = (rand() % (115 - 45 + 1) + 45)*2.2;
+  delay(2000);
+  temperaturenode1 = dht1.readTemperature(true);
+  temperaturenode2 = dht2.readTemperature(true);
+  temperaturenode3 = dht3.readTemperature(true);
+  temperaturenode4 = dht4.readTemperature(true);
+  temperaturenode5 = dht5.readTemperature(true);
+  humiditynode1 = dht1.readHumidity();
+  humiditynode2 = dht2.readHumidity();
+  humiditynode3 = dht3.readHumidity();
+  humiditynode4 = dht4.readHumidity();
+  humiditynode5 = dht5.readHumidity();
+  weight = (rand() % (115 - 45 + 1) + 45) * 2.2;
   server.send(200, "text/html", SendHTML(temperaturenode1, temperaturenode2, temperaturenode3, temperaturenode4, temperaturenode5, humiditynode1, humiditynode2, humiditynode3, humiditynode4, humiditynode5, weight));
 }
 

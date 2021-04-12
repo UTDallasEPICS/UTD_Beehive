@@ -22,6 +22,11 @@ def LastNlines(fname, N):
 
             return x
 
+def createvariables
+
+
+
+
 
 @application.route('/') # This displays the main parts of the website
 def index():

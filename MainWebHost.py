@@ -28,25 +28,21 @@ def LastNlines(fname, N):
 
 @application.route('/') # This displays the main parts of the website
 def index():
+    #These 7 lines under me will be turned into a dynamic list
     fname = 'UTD Beehive 0.txt'
     list = LastNlines(fname, 1)
-    print(list)
     date = addDate(list[0], list[1])
-    print(date)
     fahrenheit = float(list[2])
     humidity = list[6]
     weight = list[12]
-
-    return render_template('UTDBeeSite.html', fahrenheit=fahrenheit, humidity=humidity, weight=weight, )
+    UTDBeehive = 'UTD Beehive 0'
+    return render_template('UTDBeeSite.html',Beehive=UTDBeehive, fahrenheit=fahrenheit, humidity=humidity, weight=weight, )
 
 
 @application.route('/<UTDBeehive>')
 def UTDBeehive(UTDBeehive):
     fname = UTDBeehive + ".txt"
     list = LastNlines(fname, 1)
-    #print(list)
-    date = addDate(list[0], list[1])
-    #print(date)
     fahrenheit = float(list[2])
     humidity = list[6]
     weight = list[12]

@@ -95,7 +95,7 @@
 
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="/">Home</a>
+
     <a href="/UTD Beehive 0">Beehive 0</a>
     <a href="/UTD Beehive 1">Beehive 1</a>
     <a href="/UTD Beehive 2">Beehive 2</a>
@@ -121,7 +121,7 @@
 </script>
 
 <div class="header">
-    <h1>UTDallas Beehive Monitoring</h1>
+    <h1><a href="/">UTDallas Beehive Monitoring</a></h1>
 </div>
 <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Beehives</span>
 <div class="navbar">
@@ -149,14 +149,9 @@
     <div><a href="https://dallas.weatherstem.com/utdallas">UTDallas WeatherSTEM</a></div>
 </div>
 <h2 style="text-align:center;">{{ Beehive }}</h2>
-<h2 style="text-align:center;">Temperature</h2>
-<p style="text-align:center;">{{ fahrenheit }}°F</p>
-
-<h2 style="text-align:center;">Humidity</h2>
-<p style="text-align:center;">{{ humidity }}%</p>
-
-<h2 style="text-align:center;">Weight</h2>
-<p style="text-align:center;">{{ weight }}lb</p>
+<p style="text-align:center;">Temperature {{ fahrenheit }}°F</p>
+<p style="text-align:center;">Humidity {{ humidity }}%</p>
+<p style="text-align:center;">Weight {{ weight }}lb</p>
 
 
 <!--suppress JSUnresolvedLibraryURL -->

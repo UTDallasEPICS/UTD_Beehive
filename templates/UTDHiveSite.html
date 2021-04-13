@@ -123,7 +123,7 @@
 <div class="header">
     <h1>UTDallas Beehive Monitoring</h1>
 </div>
-<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Beehives</span>
 <div class="navbar">
     <a href="https://sustainability.utdallas.edu/">UTD Sustainability</a>
     <a href="https://epics.utdallas.edu/">UTDesign(R) EPICS</a>
@@ -165,33 +165,123 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <!--suppress JSUnresolvedLibraryURL -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
-<canvas id="lineChart" width="700" height="700"></canvas>
+<canvas id="TemperatureChart" width="700" height="700"></canvas>
 <script>
 
-       var ctx = document.getElementById('lineChart').getContext('2d');
-       var lineChart = new Chart(ctx, {
-           type: "line",
-           data: {
-               labels: {{ labels | safe }},
-               datasets: [
-                   {
-                       label: "Data points",
-                       data: {{ values | safe }},
-                       fill: false,
-                       borderColor: "rgb(75,192,192)",
-                       lineTension: 0.1
-                   }
-               ]
-           },
-           options:{
-               responsive: false
+    var ctx = document.getElementById('TemperatureChart').getContext('2d');
+    var lineChart = new Chart(ctx, {
+        type: "line",
+        data: {
+            labels: {{ date | safe }},
+            datasets: [
+                {
+                    label: "Temperature Node 1",
+                    data: {{ temperaturenode1 | safe }},
+                    fill: false,
+                    borderColor: "rgb(247,13,26)"
+                }, {
+                    label: "Temperature Node 2",
+                    data: {{ temperaturenode2 | safe }},
+                    fill: false,
+                    borderColor: "rgb(247,13,26)"
+                }, {
+                    label: "Temperature Node 3",
+                    data: {{ temperaturenode3 | safe }},
+                    fill: false,
+                    borderColor: "rgb(247,13,26)"
+                }, {
+                    label: "Temperature Node 4",
+                    data: {{ temperaturenode4 | safe }},
+                    fill: false,
+                    borderColor: "rgb(247,13,26)"
+                }, {
+                    label: "Temperature Node 5",
+                    data: {{ temperaturenode5 | safe }},
+                    fill: false,
+                    borderColor: "rgb(247,13,26)"
+                }
+            ]
+        },
+        options: {
+            responsive: false
 
-           }
-       });
-
+        }
+    });
 
 
 </script>
+<canvas id="HumidityChart" width="700" height="700"></canvas>
+<script>
+
+    var ctx = document.getElementById('HumidityChart').getContext('2d');
+    var lineChart = new Chart(ctx, {
+        type: "line",
+        data: {
+            labels: {{ date | safe }},
+            datasets: [
+                {
+                    label: "Humidity Node 1",
+                    data: {{ humiditynode1 | safe }},
+                    fill: false,
+                    borderColor: "rgb(164,244,249)"
+                }, {
+                    label: "Humidity Node 2",
+                    data: {{ humiditynode2 | safe }},
+                    fill: false,
+                    borderColor: "rgb(164,244,249)"
+                }, {
+                    label: "Humidity Node 3",
+                    data: {{ humiditynode2 | safe }},
+                    fill: false,
+                    borderColor: "rgb(164,244,249)"
+                }, {
+                    label: "Humidity Node 4",
+                    data: {{ humiditynode2 | safe }},
+                    fill: false,
+                    borderColor: "rgb(164,244,249)"
+                }, {
+                    label: "Humidity Node 5",
+                    data: {{ humiditynode2 | safe }},
+                    fill: false,
+                    borderColor: "rgb(164,244,249)"
+                }
+            ]
+        },
+        options: {
+            responsive: false
+
+        }
+    });
+
+
+</script>
+
+<canvas id="WeightChart" width="700" height="700"></canvas>
+<script>
+
+    var ctx = document.getElementById('WeightChart').getContext('2d');
+    var lineChart = new Chart(ctx, {
+        type: "line",
+        data: {
+            labels: {{ date | safe }},
+            datasets: [
+                {
+                    label: "Weight",
+                    data: {{ weightnode | safe }},
+                    fill: false,
+                    borderColor: "rgb(255,215,0)"
+                }
+            ]
+        },
+        options: {
+            responsive: false
+
+        }
+    });
+
+
+</script>
+
 
 
 <script type="text/javascript">

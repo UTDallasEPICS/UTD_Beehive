@@ -23,25 +23,7 @@ def LastNlines(fname, N):
             return x
 
 
-def collectallfunction(filenameforbeehive):
-    datapoint = "["
-    with open(filenameforbeehive) as file:
-        for readline in file:
-            # For Python3, use print(line)
-            readlist = readline.split()
-            datapoint = datapoint + "('" + readlist[0] + " " + readlist[1] + "'," + readlist[2] + ")" +  ", "
-        datapoint = datapoint[:-2]
-        datapoint = datapoint + "]"
-    return datapoint
 
-
-
-
-    #Grabs the date and temp
-    # stores date and temp in this format ('date', temp)
-    #does this for whole file
-    #put into list and append
-    #return list
 
 
 @application.route('/') # This displays the main parts of the website
@@ -68,15 +50,42 @@ def UTDBeehive(UTDBeehive):
     fahrenheit = float(list[2])
     humidity = list[6]
     weight = list[12]
-    data = [('04-01-2021', 150),('04-02-2021', 140),('04-03-2021', 150)]
-    print(type(data))
-    str = collectallfunction(fname)
-    print(str)
-    #data = str
-    #print(data)
-    labels = [row[0] for row in data]
-    values = [row[1] for row in data]
-    return render_template('UTDHiveSite.html', fahrenheit=fahrenheit, humidity=humidity, weight=weight, labels=labels,values=values)
+
+    date = []
+    temperaturenode1 = []
+    temperaturenode2 = []
+    temperaturenode3 = []
+    temperaturenode4 = []
+    temperaturenode5 = []
+    humiditynode1 = []
+    humiditynode2 = []
+    humiditynode3 = []
+    humiditynode4 = []
+    humiditynode5 = []
+    weightnode = []
+
+    with open(fname) as file:
+        for readline in file:
+
+            readlist = readline.split()
+            str = readlist[0] + " " + readlist[1]
+            date.append(str)
+            temperaturenode1.append(float(readlist[2]))
+            temperaturenode2.append(float(readlist[3]))
+            temperaturenode3.append(float(readlist[4]))
+            temperaturenode4.append(float(readlist[5]))
+            temperaturenode5.append(float(readlist[6]))
+            humiditynode1.append(float(readlist[7]))
+            humiditynode2.append(float(readlist[8]))
+            humiditynode3.append(float(readlist[9]))
+            humiditynode4.append(float(readlist[10]))
+            humiditynode5.append(float(readlist[11]))
+            weightnode.append(float(readlist[12]))
+
+
+
+
+    return render_template('UTDHiveSite.html', fahrenheit=fahrenheit, humidity=humidity, weight=weight, date=date,temperaturenode1=temperaturenode1,temperaturenode2=temperaturenode2,temperaturenode3=temperaturenode3,temperaturenode4=temperaturenode4,temperaturenode5=temperaturenode5,humiditynode1=humiditynode1,humiditynode2=humiditynode2,humiditynode3=humiditynode3,humiditynode4=humiditynode4,humiditynode5=humiditynode5,weightnode=weightnode)
 
 
 

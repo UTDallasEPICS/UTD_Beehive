@@ -148,7 +148,7 @@
     <div> Current Rainfall: <span data-sensor="Rain Rate"></span> in/hr</div>
     <div><a href="https://dallas.weatherstem.com/utdallas">UTDallas WeatherSTEM</a></div>
 </div>
-
+<h2 style="text-align:center;">{{ Beehive }}</h2>
 <h2 style="text-align:center;">Temperature</h2>
 <p style="text-align:center;">{{ fahrenheit }}°F</p>
 
@@ -203,6 +203,42 @@
             ]
         },
         options: {
+            title: {
+    display: true,
+    text: "Temperature",
+    position: "top",
+    fullWidth: false,
+    fontSize: 30
+  },
+
+  scales: {
+    yAxes: [
+      {
+        ticks: {
+          beginAtZero: false
+        },
+        scaleLabel: {
+          labelString: "Temperature F",
+          display: true,
+          fontSize: 25
+        }
+      }
+    ],
+          xAxes: {
+      0: {
+        type: "category",
+        display: false,
+        scaleLabel: {
+          labelString: "Time",
+          display: true
+        },
+        position: "bottom"
+      }
+    }
+  },
+  animation: {
+    duration: ""
+  },
             responsive: false
 
         }
@@ -248,10 +284,47 @@
             ]
         },
         options: {
+            title: {
+    display: true,
+    text: "Humidity",
+    position: "top",
+    fullWidth: false,
+    fontSize: 30
+  },
+
+  scales: {
+    yAxes: [
+      {
+        ticks: {
+          beginAtZero: false
+        },
+        scaleLabel: {
+          labelString: "Humidity %",
+          display: true,
+          fontSize: 25
+        }
+      }
+    ],
+          xAxes: {
+      0: {
+        type: "category",
+        display: false,
+        scaleLabel: {
+          labelString: "Time",
+          display: true
+        },
+        position: "bottom"
+      }
+    }
+  },
+  animation: {
+    duration: ""
+  },
             responsive: false
 
         }
     });
+
 
 
 </script>
@@ -274,6 +347,42 @@
             ]
         },
         options: {
+            title: {
+    display: true,
+    text: "Weight",
+    position: "top",
+    fullWidth: false,
+    fontSize: 30
+  },
+
+  scales: {
+    yAxes: [
+      {
+        ticks: {
+          beginAtZero: false
+        },
+        scaleLabel: {
+          labelString: "Weight lb",
+          display: true,
+          fontSize: 25
+        }
+      }
+    ],
+          xAxes: {
+      0: {
+        type: "category",
+        display: false,
+        scaleLabel: {
+          labelString: "Time",
+          display: true
+        },
+        position: "bottom"
+      }
+    }
+  },
+  animation: {
+    duration: ""
+  },
             responsive: false
 
         }

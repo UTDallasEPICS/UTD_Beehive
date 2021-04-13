@@ -85,7 +85,7 @@ def UTDBeehive(UTDBeehive):
 
 
 
-    return render_template('UTDHiveSite.html', fahrenheit=fahrenheit, humidity=humidity, weight=weight, date=date,temperaturenode1=temperaturenode1,temperaturenode2=temperaturenode2,temperaturenode3=temperaturenode3,temperaturenode4=temperaturenode4,temperaturenode5=temperaturenode5,humiditynode1=humiditynode1,humiditynode2=humiditynode2,humiditynode3=humiditynode3,humiditynode4=humiditynode4,humiditynode5=humiditynode5,weightnode=weightnode)
+    return render_template('UTDHiveSite.html',Beehive=UTDBeehive, fahrenheit=fahrenheit, humidity=humidity, weight=weight, date=date,temperaturenode1=temperaturenode1,temperaturenode2=temperaturenode2,temperaturenode3=temperaturenode3,temperaturenode4=temperaturenode4,temperaturenode5=temperaturenode5,humiditynode1=humiditynode1,humiditynode2=humiditynode2,humiditynode3=humiditynode3,humiditynode4=humiditynode4,humiditynode5=humiditynode5,weightnode=weightnode)
 
 
 

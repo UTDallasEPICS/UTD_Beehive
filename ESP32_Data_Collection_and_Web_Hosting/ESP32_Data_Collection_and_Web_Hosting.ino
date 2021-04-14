@@ -9,9 +9,9 @@
 #define DHT3_PIN 4
 #define DHT4_PIN 12
 #define DHT5_PIN 14
-// Uncomment whatever type you're using!
-#define DHTTYPE DHT11   // DHT 11
-//#define DHTTYPE DHT22   // DHT 22  (AM2302), AM2321
+#define WEIGHT_PIN 23
+
+#define DHTTYPE DHT22   // DHT 22  (AM2302), AM2321
 
 DHT dht1(DHT1_PIN, DHTTYPE); // Initialize DHT sensor.
 DHT dht2(DHT2_PIN, DHTTYPE); // Initialize DHT sensor.
@@ -45,6 +45,7 @@ void setup() {
   pinMode(DHT3_PIN, INPUT);
   pinMode(DHT4_PIN, INPUT);
   pinMode(DHT5_PIN, INPUT);
+  pinMode(WEIGHT_PIN, INPUT);
   dht1.begin();
   dht2.begin();
   dht3.begin();
@@ -80,6 +81,10 @@ void loop() {
 
 void handle_OnConnect() {
   delay(2000);
+
+
+
+  
   temperaturenode1 = dht1.readTemperature(true);
   temperaturenode2 = dht2.readTemperature(true);
   temperaturenode3 = dht3.readTemperature(true);
@@ -90,7 +95,7 @@ void handle_OnConnect() {
   humiditynode3 = dht3.readHumidity();
   humiditynode4 = dht4.readHumidity();
   humiditynode5 = dht5.readHumidity();
-  weight = (rand() % (115 - 45 + 1) + 45) * 2.2;
+  weight = dht5.readHumidity();
   server.send(200, "text/html", SendHTML(temperaturenode1, temperaturenode2, temperaturenode3, temperaturenode4, temperaturenode5, humiditynode1, humiditynode2, humiditynode3, humiditynode4, humiditynode5, weight));
 }
 

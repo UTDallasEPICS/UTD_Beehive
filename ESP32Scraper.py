@@ -174,7 +174,7 @@ while bool("True"):  # Will run forever
 
         try:  # Try statement in case the IP is unresponsive
             scrape(IpAddress)  # Function that beings the scraping process
-            time.sleep(5)  # Set delay for the next IP it scrapes. Only change if it is collecting data to fast or want to make it run slower to save battery life if they are solar powered
+            time.sleep(60)  # Set delay for the next IP it scrapes. Only change if it is collecting data to fast or want to make it run slower to save battery life if they are solar powered
         except:
             print("The IP " + IpAddress + " is unresponsive!")  # If ip fails tell user.
             IpAddress = line.strip()  # Gets next line in ip list

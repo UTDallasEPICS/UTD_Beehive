@@ -3,15 +3,22 @@
 #include <WebServer.h> //WebServer.h library has some methods available that will help us setting up a server and handle incoming HTTP requests without needing to worry about low level implementation details.
 #include <Wire.h> //Wire.h library communicates with any I2C device not just BME280
 #include "DHT.h"
+#include "HX711.h"
 
-#define DHT1_PIN 0
-#define DHT2_PIN 2
-#define DHT3_PIN 4
-#define DHT4_PIN 12
-#define DHT5_PIN 14
-#define WEIGHT_PIN 23
 
+#define calibration_factor -7050.0 //This value is obtained using the SparkFun_HX711_Calibration sket
+
+#define DHT1_PIN 34
+#define DHT2_PIN 35
+#define DHT3_PIN 32
+#define DHT4_PIN 33
+#define DHT5_PIN 25
+#define LOADCELL_DOUT_PIN  26
+#define LOADCELL_SCK_PIN  27
 #define DHTTYPE DHT22   // DHT 22  (AM2302), AM2321
+
+
+HX711 scale;
 
 DHT dht1(DHT1_PIN, DHTTYPE); // Initialize DHT sensor.
 DHT dht2(DHT2_PIN, DHTTYPE); // Initialize DHT sensor.
@@ -45,12 +52,18 @@ void setup() {
   pinMode(DHT3_PIN, INPUT);
   pinMode(DHT4_PIN, INPUT);
   pinMode(DHT5_PIN, INPUT);
-  pinMode(WEIGHT_PIN, INPUT);
+
   dht1.begin();
   dht2.begin();
   dht3.begin();
   dht4.begin();
   dht5.begin();
+
+
+  scale.begin(LOADCELL_DOUT_PIN, LOADCELL_SCK_PIN);
+  scale.set_scale(calibration_factor); //This value is obtained by using the SparkFun_HX711_Calibration sketch
+  scale.tare(); //Assuming there is no weight on the scale at start up, reset the scale to 0
+
 
   
   Serial.println("Connecting to "); //serial communication is here for testing
@@ -80,8 +93,6 @@ void loop() {
 }
 
 void handle_OnConnect() {
-  delay(2000);
-
 
 
   
@@ -95,7 +106,7 @@ void handle_OnConnect() {
   humiditynode3 = dht3.readHumidity();
   humiditynode4 = dht4.readHumidity();
   humiditynode5 = dht5.readHumidity();
-  weight = dht5.readHumidity();
+  weight = (scale.get_units(), 1);
   server.send(200, "text/html", SendHTML(temperaturenode1, temperaturenode2, temperaturenode3, temperaturenode4, temperaturenode5, humiditynode1, humiditynode2, humiditynode3, humiditynode4, humiditynode5, weight));
 }
 

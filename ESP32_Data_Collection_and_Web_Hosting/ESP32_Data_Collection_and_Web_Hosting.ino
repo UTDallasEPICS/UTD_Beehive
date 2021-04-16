@@ -8,17 +8,17 @@
 
 #define calibration_factor -7050.0 //This value is obtained using the SparkFun_HX711_Calibration sket
 
-#define DHT1_PIN 14
-#define DHT2_PIN 12
-#define DHT3_PIN 32
-#define DHT4_PIN 33
-#define DHT5_PIN 25
+#define DHT1_PIN 23
+#define DHT2_PIN 19
+#define DHT3_PIN 18
+#define DHT4_PIN 5
+#define DHT5_PIN 17
 #define LOADCELL_DOUT_PIN  26
 #define LOADCELL_SCK_PIN  27
 #define DHTTYPE DHT22   // DHT 22  (AM2302), AM2321
 
 
-//HX711 scale;
+HX711 scale;
 
 DHT dht1(DHT1_PIN, DHTTYPE); // Initialize DHT sensor.
 DHT dht2(DHT2_PIN, DHTTYPE); // Initialize DHT sensor.
@@ -60,9 +60,9 @@ void setup() {
   dht5.begin();
 
 
-  //scale.begin(LOADCELL_DOUT_PIN, LOADCELL_SCK_PIN);
-  //scale.set_scale(calibration_factor); //This value is obtained by using the SparkFun_HX711_Calibration sketch
-  //scale.tare(); //Assuming there is no weight on the scale at start up, reset the scale to 0
+  scale.begin(LOADCELL_DOUT_PIN, LOADCELL_SCK_PIN);
+  scale.set_scale(calibration_factor); //This value is obtained by using the SparkFun_HX711_Calibration sketch
+  scale.tare(); //Assuming there is no weight on the scale at start up, reset the scale to 0
 
 
   
@@ -90,6 +90,7 @@ void setup() {
 }
 void loop() {
   server.handleClient(); //
+
 }
 
 void handle_OnConnect() {
@@ -106,7 +107,8 @@ void handle_OnConnect() {
   humiditynode3 = dht3.readHumidity();
   humiditynode4 = dht4.readHumidity();
   humiditynode5 = dht5.readHumidity();
-  weight = 0;//(scale.get_units(), 1);
+  weight = scale.get_units();
+
   server.send(200, "text/html", SendHTML(temperaturenode1, temperaturenode2, temperaturenode3, temperaturenode4, temperaturenode5, humiditynode1, humiditynode2, humiditynode3, humiditynode4, humiditynode5, weight));
 }
 

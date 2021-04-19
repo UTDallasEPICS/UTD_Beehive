@@ -160,6 +160,119 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <!--suppress JSUnresolvedLibraryURL -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+
+<canvas id="Compressed" width="700" height="700" ></canvas>
+<script>
+
+    var ctx = document.getElementById('Compressed').getContext('2d');
+    var lineChart = new Chart(ctx, {
+        type: "line",
+        data: {
+            labels: {{ Cdate | safe }},
+            datasets: [
+                {
+                    label: "Temperature Node 1",
+                    data: {{ Ctemperaturenode1 | safe }},
+                    fill: false,
+                    borderColor: "rgb(247,13,26)"
+                }, {
+                    label: "Temperature Node 2",
+                    data: {{ Ctemperaturenode2 | safe }},
+                    fill: false,
+                    borderColor: "rgb(247,13,26)"
+                }, {
+                    label: "Temperature Node 3",
+                    data: {{ Ctemperaturenode3 | safe }},
+                    fill: false,
+                    borderColor: "rgb(247,13,26)"
+                }, {
+                    label: "Temperature Node 4",
+                    data: {{ Ctemperaturenode4 | safe }},
+                    fill: false,
+                    borderColor: "rgb(247,13,26)"
+                }, {
+                    label: "Temperature Node 5",
+                    data: {{ Ctemperaturenode5 | safe }},
+                    fill: false,
+                    borderColor: "rgb(247,13,26)"
+                }, {
+                    label: "Humidity Node 1",
+                    data: {{ Chumiditynode1 | safe }},
+                    fill: false,
+                    borderColor: "rgb(164,244,249)"
+                }, {
+                    label: "Humidity Node 2",
+                    data: {{ Chumiditynode2 | safe }},
+                    fill: false,
+                    borderColor: "rgb(164,244,249)"
+                }, {
+                    label: "Humidity Node 3",
+                    data: {{ Chumiditynode3 | safe }},
+                    fill: false,
+                    borderColor: "rgb(164,244,249)"
+                }, {
+                    label: "Humidity Node 4",
+                    data: {{ Chumiditynode4 | safe }},
+                    fill: false,
+                    borderColor: "rgb(164,244,249)"
+                }, {
+                    label: "Humidity Node 5",
+                    data: {{ Chumiditynode5 | safe }},
+                    fill: false,
+                    borderColor: "rgb(164,244,249)"
+                },{
+                    label: "Weight",
+                    data: {{ Cweightnode | safe }},
+                    fill: false,
+                    borderColor: "rgb(255,215,0)"
+                }
+            ]
+        },
+        options: {
+            title: {
+    display: true,
+    text: "Life Time Data",
+    position: "top",
+    fullWidth: false,
+    fontSize: 30
+  },
+
+  scales: {
+    yAxes: [
+      {
+        ticks: {
+          beginAtZero: false
+        },
+        scaleLabel: {
+          labelString: "Values",
+          display: true,
+          fontSize: 25
+        }
+      }
+    ],
+          xAxes: {
+      0: {
+        type: "category",
+        display: false,
+        scaleLabel: {
+          labelString: "Time",
+          display: true
+        },
+        position: "bottom"
+      }
+    }
+  },
+  animation: {
+    duration: ""
+  },
+            responsive: false
+
+        }
+    });
+
+
+</script>
+
 <canvas id="TemperatureChart" width="700" height="700"></canvas>
 <script>
 

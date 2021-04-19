@@ -60,9 +60,8 @@ void setup() {
   dht5.begin();
 
 
-  scale.begin(LOADCELL_DOUT_PIN, LOADCELL_SCK_PIN);
-  scale.set_scale(calibration_factor); //This value is obtained by using the SparkFun_HX711_Calibration sketch
-  scale.tare(); //Assuming there is no weight on the scale at start up, reset the scale to 0
+
+  //scale.tare(); //Assuming there is no weight on the scale at start up, reset the scale to 0
 
 
   
@@ -94,7 +93,8 @@ void loop() {
 }
 
 void handle_OnConnect() {
-
+  scale.begin(LOADCELL_DOUT_PIN, LOADCELL_SCK_PIN);
+  scale.set_scale(calibration_factor); //This value is obtained by using the SparkFun_HX711_Calibration sketch
 
   
   temperaturenode1 = dht1.readTemperature(true);
@@ -108,7 +108,6 @@ void handle_OnConnect() {
   humiditynode4 = dht4.readHumidity();
   humiditynode5 = dht5.readHumidity();
   weight = scale.get_units();
-
   server.send(200, "text/html", SendHTML(temperaturenode1, temperaturenode2, temperaturenode3, temperaturenode4, temperaturenode5, humiditynode1, humiditynode2, humiditynode3, humiditynode4, humiditynode5, weight));
 }
 

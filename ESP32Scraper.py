@@ -76,7 +76,8 @@ def compressdata(filenameforbeehive, beehivename):  # Compressed the data if a n
         h4 = truncate(addvalues(humiditynode4, linesread), 2)
         h5 = truncate(addvalues(humiditynode5, linesread), 2)
         w1 = truncate(addvalues(weight, linesread), 2)
-        datadump = firstline[0] + " " + str(t1) + " " + str(t2) + " " + str(t3) + " " + str(t4) + " " + str(t5) + " " + str(
+        datadump = firstline[0] + " " + str(t1) + " " + str(t2) + " " + str(t3) + " " + str(t4) + " " + str(
+            t5) + " " + str(
             h1) + " " + str(h2) + " " + str(h3) + " " + str(h4) + " " + str(h5) + " " + str(
             w1)  # Information that will be dumped into hive name compressed.tx file
         beehivename = beehivename + " Compressed.txt"  # This is now the new file for the compressed data
@@ -113,20 +114,26 @@ def savetofile(beehivename, beehivetemperature, beehivehumidity,
                                   1)  # Function that grabs the last line of the beehive file IF it exist
         saveddate = lastlineoffile[
             0]  # Saves the first value which is the Date saved. This is used for the compressdata function
+        datadump = currenttime + " " + beehivetemperature + " " + beehivehumidity + " " + beehiveweight  # Create string to dump into end of file. We have to still save the information because when it compresses the system needs a diffrent date to know when to stop compressing
+        if (datadump.find('nan') != -1):
+            print("Sensor Reading Null!")
+            return
 
-        if currentdate != saveddate:  # if the current real time date IS NOT the same as the most recently saved date then Begin compression
-            print("New Day Detected!")
-            datadump = currenttime + " " + beehivetemperature + " " + beehivehumidity + " " + beehiveweight  # Create string to dump into end of file. We have to still save the information because when it compresses the system needs a diffrent date to know when to stop compressing
-            beehive = open(filenameforbeehive, "a")  # open file and append
-            beehive.write(datadump + "\n")  # save the data
-            beehive.close()  # close the file
-            compressdata(filenameforbeehive, beehivename)  # Start compression function
-        else:  # If current real time date IS the same then just save normally
-            print("Same Day Detected!")
-            datadump = currenttime + " " + beehivetemperature + " " + beehivehumidity + " " + beehiveweight  # Create string to dump into end of file.
-            beehive = open(filenameforbeehive, "a")  # open file and append
-            beehive.write(datadump + "\n")  # save the data
-            beehive.close()  # close the file
+        else:
+            if currentdate != saveddate:  # if the current real time date IS NOT the same as the most recently saved date then Begin compression
+                print("New Day Detected!")
+                beehive = open(filenameforbeehive, "a")  # open file and append
+                beehive.write(datadump + "\n")  # save the data
+                beehive.close()  # close the file
+                compressdata(filenameforbeehive, beehivename)  # Start compression function
+                beehive = open(filenameforbeehive, "a")  # open file and append
+                beehive.write(datadump + "\n")  # save the data
+                beehive.close()  # close the file
+            else:  # If current real time date IS the same then just save normally
+                print("Same Day Detected!")
+                beehive = open(filenameforbeehive, "a")  # open file and append
+                beehive.write(datadump + "\n")  # save the data
+                beehive.close()  # close the file
     except:
         print("File Not Found Creating New File Being Made. This Might Be Because The Data Was Recently Compressed")
         datadump = currenttime + " " + beehivetemperature + " " + beehivehumidity + " " + beehiveweight  # Create string to dump into end of file.
@@ -153,11 +160,9 @@ def scrape(ipaddress):  # Takes in the IP address of the Beehive that it needs t
     end_index = html.find("&deg;F")
     temperature = html[start_index:end_index]
 
-
     start_index = html.find("Humidity: ") + len("Humidity: ")  # Filter to grab the Humidity Nodes
     end_index = html.find("%")
     humidity = html[start_index:end_index]
-
 
     start_index = html.find("Weight: ") + len("Weight: ")  # Filter to Grab the Weight of the hive
     end_index = html.find("lb")
@@ -165,8 +170,7 @@ def scrape(ipaddress):  # Takes in the IP address of the Beehive that it needs t
 
     savetofile(beehivename, temperature, humidity, weight)  # Function that sends information to be saved
 
-
-while bool("True"):  # Will run forever
+def getnextip():
     HiveIPList = open("Beehive_IP.txt", "r")  # open Beehive Ip list. This holds all IP's that the beehives are on.
     for line in HiveIPList:  # For statment reads each line of the beehive ip file
         IpAddress = line.strip()  # Grabs the line
@@ -174,8 +178,12 @@ while bool("True"):  # Will run forever
 
         try:  # Try statement in case the IP is unresponsive
             scrape(IpAddress)  # Function that beings the scraping process
-            time.sleep(60)  # Set delay for the next IP it scrapes. Only change if it is collecting data to fast or want to make it run slower to save battery life if they are solar powered
+            time.sleep(2)  # Set delay for the next IP it scrapes. Only change if it is collecting data to fast or want to make it run slower to save battery life if they are solar powered
         except:
             print("The IP " + IpAddress + " is unresponsive!")  # If ip fails tell user.
             IpAddress = line.strip()  # Gets next line in ip list
     HiveIPList.close()  # Once at the end of list the while loop will being the process again
+
+
+while bool("True"):  # Will run forever
+    getnextip()

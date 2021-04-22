@@ -18,18 +18,17 @@
             background: #154734;
             color: white;
         }
-
         .header h1 {
             font-size: 40px;
         }
-
-        /* Style the top navigation bar */
+	.header a {
+        	color: white;
+        }
+        
         .navbar {
             overflow: hidden;
             background-color: #446c5d;
         }
-
-        /* Style the navigation bar links */
         .navbar a {
             float: left;
             display: block;
@@ -38,120 +37,141 @@
             padding: 14px 20px;
             text-decoration: none;
         }
-
-
-        /* Change color on hover */
         .navbar a:hover {
             background-color: #ddd;
             color: black;
         }
-
-        .sidenav {
-            height: 100%;
-            width: 0;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            background-color: #111;
-            overflow-x: hidden;
-            transition: 0.5s;
-            padding-top: 60px;
-        }
-
-        .sidenav a {
-            padding: 8px 8px 8px 32px;
-            text-decoration: none;
-            font-size: 25px;
-            color: #818181;
-            display: block;
-            transition: 0.3s;
-        }
-
-        .sidenav a:hover {
-            color: #f1f1f1;
-        }
-
-        .sidenav .closebtn {
+        
+        .liveweather {
             position: absolute;
-            top: 0;
-            right: 25px;
-            font-size: 36px;
-            margin-left: 50px;
+            right: 0;
+		width: 200px;
+        	background-color: white;
+	  	color: black;
+  		border: 2px solid #e87500;
+		margin: 0px;
+  		padding: 10px;
+        }
+        .liveweather h1 {
+        	background-color: #e87500;
+            text-align: center;
+        	color: white;
+            font-size: 20px;
+        }
+        .liveweather a {
+        	color: white;
         }
 
-        @media screen and (max-height: 450px) {
-            .sidenav {
-                padding-top: 15px;
-            }
+        .dropbtn {
+  		font-size: 20px;
+  		cursor: pointer;
+  		background-color: #FFB101;
+  		color: white;
+  		padding: 5px 10px;
+  		border: none;
+	}
 
-            .sidenav a {
-                font-size: 18px;
-            }
+	.dropbtn:hover, .dropbtn:focus {
+		background-color: #e87500;
+	}
+
+	.dropdown {
+  		position: relative;
+  		display: inline-block;
+	}
+
+	.dropdown-content {
+  		display: none;
+  		position: absolute;
+ 		background-color: #f1f1f1;
+  		min-width: 125px;
+            	max-height: 100px;
+  		overflow: auto;
+  		box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  		z-index: 1;
+		}
+
+	.dropdown-content a {
+  		color: black;
+  		padding: 12px 16px;
+  		text-decoration: none;
+  		display: block;
+	}
+
+	.dropdown a:hover {
+        	background-color: #ddd;
         }
+
+	.show {display: block;}
     </style>
 </head>
 <body>
 
-<div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-
-    <a href="/UTD Beehive 0">Beehive 0</a>
-    <a href="/UTD Beehive 1">Beehive 1</a>
-    <a href="/UTD Beehive 2">Beehive 2</a>
-    <a href="/UTD Beehive 3">Beehive 3</a>
-    <a href="/UTD Beehive 4">Beehive 4</a>
-    <a href="/UTD Beehive 5">Beehive 5</a>
-    <a href="/UTD Beehive 6">Beehive 6</a>
-    <a href="/UTD Beehive 7">Beehive 7</a>
-    <a href="/UTD Beehive 8">Beehive 8</a>
-    <a href="/UTD Beehive 9">Beehive 9</a>
-    <a href="/UTD Beehive 10">Beehive 10</a>
-</div>
-
-
-<script>
-    function openNav() {
-        document.getElementById("mySidenav").style.width = "250px";
-    }
-
-    function closeNav() {
-        document.getElementById("mySidenav").style.width = "0";
-    }
-</script>
-
 <div class="header">
     <h1><a href="/">UTDallas Beehive Monitoring</a></h1>
 </div>
-<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Beehives</span>
 <div class="navbar">
     <a href="https://sustainability.utdallas.edu/">UTD Sustainability</a>
-    <a href="https://epics.utdallas.edu/">UTDesign(R) EPICS</a>
+    <a href="https://epics.utdallas.edu/">UTDesign® EPICS</a>
     <a href="https://sites.utdallas.edu/epics-sustainability/">EPICS Team</a>
 </div>
 <br>
 
-<!-- Code for API comes from https://learn.weatherstem.com/modules/learn/lessons/115/04.html-->
-<!-- Meta data for API key and station identifier -->
 <meta name="WeatherSTEM-api-key" content="7cwa5e4h">
 <meta name="WeatherSTEM-station" content="dallas/utdallas">
-
-<!-- JavaScript -->
-<script src="//code.jquery.com/jquery-1.12.0.min.js"></script> <!-- jQuery needs to load before the API file -->
-<script src="//static.weatherstem.com/api.min.js"></script> <!-- API file (must load after jQuery) -->
-
-<!-- HTML snippet (data-sensor attribute can be the name of any installed sensor) -->
-<div style="text-align:left;">
-    <div><b>Live Weather Conditions</b></div>
-    <div> Current Temperature: <span data-sensor="Thermometer"></span> °F</div>
-    <div> Current Humidity: <span data-sensor="Hygrometer"></span>%</div>
-    <div> Current Rainfall: <span data-sensor="Rain Rate"></span> in/hr</div>
-    <div><a href="https://dallas.weatherstem.com/utdallas">UTDallas WeatherSTEM</a></div>
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script> 
+<script src="//static.weatherstem.com/api.min.js"></script>
+<div class="liveweather">
+    <h1><a href="https://dallas.weatherstem.com/utdallas">UTDallas WeatherSTEM</a></h1>
+    <div style="font-size: 25px"><span data-sensor="Thermometer"></span> °F</div>
+    <div> Humidity: <span data-sensor="Hygrometer"></span>%</div>
+    <div> Rainfall: <span data-sensor="Rain Rate"></span> in/hr</div>
 </div>
-<h2 style="text-align:center;">{{ Beehive }}</h2>
-<p style="text-align:center;">Temperature {{ fahrenheit }}°F</p>
-<p style="text-align:center;">Humidity {{ humidity }}%</p>
-<p style="text-align:center;">Weight {{ weight }}lb</p>
+
+<div style="text-align:center;">
+	<h2>{{ Beehive }}</h2>
+  	<div class="dropdown">
+	<button onclick="myFunction()" class="dropbtn">☰ Beehives</button> 
+  	<div id="myDropdown" class="dropdown-content">
+    	<a href="/UTD Beehive 0">Beehive 0</a>
+    	<a href="/UTD Beehive 1">Beehive 1</a>
+    	<a href="/UTD Beehive 2">Beehive 2</a>
+    	<a href="/UTD Beehive 3">Beehive 3</a>
+    	<a href="/UTD Beehive 4">Beehive 4</a>
+    	<a href="/UTD Beehive 5">Beehive 5</a>
+    	<a href="/UTD Beehive 6">Beehive 6</a>
+    	<a href="/UTD Beehive 7">Beehive 7</a>
+    	<a href="/UTD Beehive 8">Beehive 8</a>
+    	<a href="/UTD Beehive 9">Beehive 9</a>
+    	<a href="/UTD Beehive 10">Beehive 10</a>
+  	</div>
+</div>
+	<p>Temperature: {{ fahrenheit }}°F</p>
+	<p>Humidity: {{ humidity }}%</p>
+	<p>Weight: {{ weight }}lb</p>
+</div>
+
+<script>
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
 
 
 <!--suppress JSUnresolvedLibraryURL -->

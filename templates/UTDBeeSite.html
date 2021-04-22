@@ -21,7 +21,7 @@
         .header h1 {
             font-size: 40px;
         }
-		.header a {
+	.header a {
         	color: white;
         }
         
@@ -45,12 +45,12 @@
         .liveweather {
             position: absolute;
             right: 0;
-        	width: 200px;
+		width: 200px;
         	background-color: white;
-		  	color: black;
-  			border: 2px solid #e87500;
-  			margin: 0px;
-  			padding: 10px;
+	  	color: black;
+  		border: 2px solid #e87500;
+		margin: 0px;
+  		padding: 10px;
         }
         .liveweather h1 {
         	background-color: #e87500;
@@ -62,84 +62,50 @@
         	color: white;
         }
 
-        .sidenav {
-            height: 100%;
-            width: 0;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            background-color: #e87500 ;
-            overflow-x: hidden;
-            transition: 0.5s;
-            padding-top: 60px;
-        }
-        .sidenav a {
-            padding: 8px 8px 8px 32px;
-            text-decoration: none;
-            font-size: 25px;
-            color: white;
-            display: block;
-            transition: 0.3s;
-        }
-        .sidenav a:hover {
-            color: #FFB101;
-        }
-		.sidebar .closebtn {
-  			position: absolute;
-  			top: 0;
-  			right: 25px;
-  			font-size: 36px;
-  			margin-left: 50px;
-		}
-		.openbtn {
-		  	font-size: 20px;
-  			cursor: pointer;
-  			background-color: #FFB101;
-  			color: white;
-  			padding: 5px 10px;
-  			border: none;
-		}
-		.openbtn:hover {
-		  	background-color: #e87500;
+        .dropbtn {
+  		font-size: 20px;
+  		cursor: pointer;
+  		background-color: #FFB101;
+  		color: white;
+  		padding: 5px 10px;
+  		border: none;
+	}
+
+	.dropbtn:hover, .dropbtn:focus {
+		background-color: #e87500;
+	}
+
+	.dropdown {
+  		position: relative;
+  		display: inline-block;
+	}
+
+	.dropdown-content {
+  		display: none;
+  		position: absolute;
+ 		background-color: #f1f1f1;
+  		min-width: 125px;
+            	max-height: 100px;
+  		overflow: auto;
+  		box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  		z-index: 1;
 		}
 
-        @media screen and (max-height: 450px) {
-            .sidenav {
-                padding-top: 15px;
-            }
-            .sidenav a {
-                font-size: 18px;
-            }
+	.dropdown-content a {
+  		color: black;
+  		padding: 12px 16px;
+  		text-decoration: none;
+  		display: block;
+	}
+
+	.dropdown a:hover {
+        	background-color: #ddd;
         }
+
+	.show {display: block;}
     </style>
 </head>
 <body>
-
-<div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="/UTD Beehive 0">Beehive 0</a>
-    <a href="/UTD Beehive 1">Beehive 1</a>
-    <a href="/UTD Beehive 2">Beehive 2</a>
-    <a href="/UTD Beehive 3">Beehive 3</a>
-    <a href="/UTD Beehive 4">Beehive 4</a>
-    <a href="/UTD Beehive 5">Beehive 5</a>
-    <a href="/UTD Beehive 6">Beehive 6</a>
-    <a href="/UTD Beehive 7">Beehive 7</a>
-    <a href="/UTD Beehive 8">Beehive 8</a>
-    <a href="/UTD Beehive 9">Beehive 9</a>
-    <a href="/UTD Beehive 10">Beehive 10</a>
-</div>
-
-<script>
-function openNav() {
-  document.getElementById("mySidenav").style.width = "250px";
-}
-
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-}
-</script>
 
 <div class="header">
     <h1><a href="/">UTDallas Beehive Monitoring</a></h1>
@@ -167,9 +133,45 @@ function closeNav() {
 	<h2>Beehive Summaries</h2>
 	<p>{{ Beehive }}: {{ fahrenheit }}°F, {{ humidity }}%, {{ weight }}lbs</p>
     <p>Select a hive from the menu below <br> to see its graphs.</p>
-    <button class="openbtn" onclick="openNav()">☰ Beehives</button> 
+    <div class="dropdown">
+	<button onclick="myFunction()" class="dropbtn">☰ Beehives</button> 
+  	<div id="myDropdown" class="dropdown-content">
+    	<a href="/UTD Beehive 0">Beehive 0</a>
+    	<a href="/UTD Beehive 1">Beehive 1</a>
+    	<a href="/UTD Beehive 2">Beehive 2</a>
+    	<a href="/UTD Beehive 3">Beehive 3</a>
+    	<a href="/UTD Beehive 4">Beehive 4</a>
+    	<a href="/UTD Beehive 5">Beehive 5</a>
+    	<a href="/UTD Beehive 6">Beehive 6</a>
+    	<a href="/UTD Beehive 7">Beehive 7</a>
+    	<a href="/UTD Beehive 8">Beehive 8</a>
+    	<a href="/UTD Beehive 9">Beehive 9</a>
+    	<a href="/UTD Beehive 10">Beehive 10</a>
+  	</div>
+</div>
 </div>
 
+<script>
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
 
 <script type="text/javascript">
     var myDate = new Date();

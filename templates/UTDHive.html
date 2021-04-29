@@ -111,9 +111,9 @@
     <h1><a href="/">UTDallas Beehive Monitoring</a></h1>
 </div>
 <div class="navbar">
-    <a href="/{{ Beehive }}Temperature">Temperature</a>
-    <a href="/{{ Beehive }}Humidity">Humidity</a>
-    <a href="/{{ Beehive }}Weight">Weight</a>
+    <a href="https://sustainability.utdallas.edu/">UTD Sustainability</a>
+    <a href="https://epics.utdallas.edu/">UTDesign® EPICS</a>
+    <a href="https://sites.utdallas.edu/epics-sustainability/">EPICS Team</a>
 </div>
 <br>
 
@@ -129,7 +129,6 @@
 </div>
 
 <div style="text-align:center;">
-	<h2>{{ Beehive }}</h2>
   	<div class="dropdown">
 	<button onclick="myFunction()" class="dropbtn">☰ Beehives</button> 
   	<div id="myDropdown" class="dropdown-content">
@@ -145,10 +144,11 @@
     	<a href="/UTD Beehive 9">Beehive 9</a>
     	<a href="/UTD Beehive 10">Beehive 10</a>
   	</div>
-</div>
-	<p>Temperature: {{ fahrenheit }}°F</p>
-	<p>Humidity: {{ humidity }}%</p>
-	<p>Weight: {{ weight }}lb</p>
+	</div>
+	<h2>{{ Beehive }}</h2>
+	<p><a href="/{{ Beehive }}Temperature" style="color: red">Temperature</a>: {{ fahrenheit }}°F</p>
+	<p><a href="/{{ Beehive }}Humidity" style="color: cornflowerblue">Humidity</a>: {{ humidity }}%</p>
+	<p><a href="/{{ Beehive }}Weight" style="color: #FFB101">Weight</a>: {{ weight }}lb</p>
 </div>
 
 <script>

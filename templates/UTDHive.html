@@ -103,6 +103,11 @@
         }
 
 	.show {display: block;}
+
+    canvas{
+    margin: 0 auto;
+    }
+
     </style>
 </head>
 <body>
@@ -182,9 +187,7 @@ window.onclick = function(event) {
 <!--suppress JSUnresolvedLibraryURL -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 
-<div style="text-align:center;">
 <canvas id="Compressed" width="700" height="700" ></canvas>
-</div>
 <script>
 
     var ctx = document.getElementById('Compressed').getContext('2d');

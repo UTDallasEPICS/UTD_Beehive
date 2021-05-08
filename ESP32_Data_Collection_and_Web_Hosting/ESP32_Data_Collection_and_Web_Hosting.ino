@@ -34,8 +34,8 @@ const char* BeehiveName = "UTD Beehive 0"; //Input Beehive Name
 //As we are configuring ESP32 in Station (STA) mode, it will join existing WiFi network. Hence, we need to provide it with your network’s SSID & Password. Next we start web server at port 80.
 /*Put your SSID & Password*/
 
-const char* ssid = "MannHouseHold";  // Enter SSID here
-const char* password = "Vanshdeep6266!";  //Enter Password here
+const char* ssid = "WifiName";  // Enter SSID here
+const char* password = "WifiPassword";  //Enter Password here
 WebServer server(80);
 
 

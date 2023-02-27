@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html> <head>
+    <meta charset="UTF-8" />
+    <title>Chart.js Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<canvas id="myChart"></canvas>
+<script>
+
+    // Define the API endpoint URL
+
+   //if you want to change port or ip address change the variables
+   //dont touch const url unless changing url ending
+
+    const port = '3000'
+    const ip_address = '192.168.5.178'
+
+    //keep it http - it only works at http
+
+    const url = 'http://' + ip_address  + ':' + port  + '/databaseData';
+
+    // Fetch data from the API endpoint
+    fetch(url, { mode: 'no-cors' })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            // Extract the data you want to use in the chart
+
+            let values = []
+            let labels = []
+
+            let i = 0;
+            while (i < data.length) {
+                console.log(data[i]);
+                values.push(data[i].value)
+                labels.push("t")
+                i++;
+            }
+
+
+            // Create a new Chart instance
+            const ctx = document.getElementById('myChart').getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Data Chart',
+                            data: values,
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1,
+                        },
+                    ],
+                },
+                options: {
+                    scales: {
+                        yAxes: [
+                            {
+                                ticks: {
+                                    beginAtZero: true,
+                                },
+                            },
+                        ],
+                    },
+                },
+            });
+        });
+</script>
+</body>
+</html>

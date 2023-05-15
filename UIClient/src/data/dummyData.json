@@ -1,0 +1,20 @@
+{
+  "weight": [
+    { "name": "Data 1", "value": 15.5 },
+    { "name": "Data 2", "value": 18.9 },
+    { "name": "Data 3", "value": 17.2 },
+    { "name": "Data 4", "value": 14.7 }
+  ],
+  "temperature": [
+    { "name": "Data 1", "value": 25.5 },
+    { "name": "Data 2", "value": 28.9 },
+    { "name": "Data 3", "value": 27.2 },
+    { "name": "Data 4", "value": 24.7 }
+  ],
+  "humidity": [
+    { "name": "Data 1", "value": 35.5 },
+    { "name": "Data 2", "value": 38.9 },
+    { "name": "Data 3", "value": 37.2 },
+    { "name": "Data 4", "value": 34.7 }
+  ]
+}

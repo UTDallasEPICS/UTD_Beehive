@@ -1,0 +1,20 @@
+.tab {
+    padding: 0;
+    margin-left: 20px;
+
+
+}
+
+.tab button {
+    font-family: verdana;
+    font-size: 20px;
+    float: right;
+    background-color: #EEEEEE;
+    padding: 1rem;
+    border-style: none none solid none;
+}
+
+button:hover {
+
+    background-color: white;
+}

@@ -1,0 +1,45 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  background: #edecee; /* #e2e2e2 */
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  width: 100%;
+  height: 100%;
+}
+
+.header-component {
+  height: 90px;
+}
+
+.sidebar-container {
+  /* width: 20%; */
+  height: calc(100% - 90px);
+}
+
+.hivePage-container {
+  width: 80%;
+  height: calc(100% - 90px);
+  display: flex;
+  flex-direction: row;
+  padding-left: 20%;
+}
+
+.body-container {
+  margin-top: 20px;
+  margin: 35px;
+  width: 70%;
+}
+
+.avg-containers {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25px;
+  /* margin-left: 80%; */
+}

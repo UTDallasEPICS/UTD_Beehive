@@ -1,0 +1,24 @@
+.avg-container {
+  width: 190px;
+  height: 190px;
+  /* margin-top: 40px;
+  margin-left: 95px; */
+  border-radius: 20px;
+  list-style-type: none;
+  margin: 10px;
+}
+
+.heading {
+  color: white;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  padding-top: 1rem;
+}
+
+.number {
+  color: white;
+  font-family: "Open Sans", sans-serif;
+  font-size: 45px;
+  text-align: center;
+}

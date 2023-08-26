@@ -1,0 +1,23 @@
+.sidebar {
+  color: black;
+  margin-top: 1rem;
+  margin-left: 0;
+  padding: 10px;
+  padding-left: 30px;
+  text-align: left;
+  font-family: "Open Sans", sans-serif;
+  font-weight: lighter;
+  font-size: 20px;
+  display: block;
+  text-decoration-line: none;
+}
+
+.sidebar-container {
+  margin: 0;
+  padding: 0;
+  width: 280px;
+  position: fixed;
+  height: 870px;
+  /* overflow: auto; */
+  background: white;
+}

@@ -1,0 +1,25 @@
+.container {
+  width: 70%;
+  height: 1005px;
+  border-radius: 20px;
+  background: #c9d8e1;
+  margin-left: 265px;
+  margin-top: 15px;
+  list-style-type: none;
+}
+
+.title {
+  font-family: verdana;
+  font-size: 35px;
+  margin-left: 1rem;
+  margin-top: 0;
+  padding: 1rem;
+  padding-top: 2rem;
+}
+
+.body {
+  font-family: verdana;
+  font-size: 20px;
+  margin-left: 1rem;
+  padding: 1rem;
+}

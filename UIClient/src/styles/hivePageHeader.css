@@ -1,0 +1,12 @@
+.hive-header {
+  color: white;
+  font-family: verdana;
+  font-size: 15px;
+  margin: 0;
+  padding: 1rem;
+}
+
+.hive-header-component {
+  background-color: #f6bd60; /* e9bc1b */
+  border-radius: 15px 15px 0 0;
+}
